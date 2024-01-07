@@ -6,12 +6,12 @@ class_name Juicy_player
 signal juice_play()
 
 @export var autoplay : bool
+@export var play_on_visible : bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if autoplay:
 		Play()
-
 
 func Play():
 	juice_play.emit()
@@ -30,7 +30,3 @@ func Stop():
 			child.Stop()
 
 			
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
