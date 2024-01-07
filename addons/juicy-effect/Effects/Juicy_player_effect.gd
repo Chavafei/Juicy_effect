@@ -1,6 +1,8 @@
 extends Juicy_effect
 class_name Juicy_effect_player
+## The effect for playing other Juicy_player
 
+## Assign other Juicy_player you want to play
 @export var target_Player : Juicy_player
 
 func Initialize():

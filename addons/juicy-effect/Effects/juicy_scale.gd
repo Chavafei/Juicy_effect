@@ -2,14 +2,19 @@ extends Juicy_effect
 class_name Juicy_effect_scale
 
 @export var target_node : Node
+
+## The target scale when the curve value is 1
 @export var target_scale : Vector3 = Vector3(1,1,1) # a scale at curve one
+
 @export var curve : Curve
 
+## will force revert back to the original scale when the effect is finished.
 @export var revert_on_exit : bool = true
 var initial_scale;
 
 func Play_Enter():
 	initial_scale = target_node.scale;
+	
 	
 	pass
  

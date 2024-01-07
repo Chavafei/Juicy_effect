@@ -1,17 +1,18 @@
 extends Juicy_effect
 class_name Juicy_effect_position
 
-## Effect for moving object, only global transform supported for now
-## To do :
-### - add local transform support
-
 @export var target_node : Node
+
 @export var mode : TransformMode
 @export var target_position : Vector3 = Vector3(0,0,0) # a scale at curve one
 @export var curve : Curve
 
 @export var revert_on_exit : bool = true
 var initial_pos;
+
+## Effect for moving object. a little buggy
+## To do :
+### - add local transform support
 
 func Play_Enter():
 	initial_pos = target_node.position;

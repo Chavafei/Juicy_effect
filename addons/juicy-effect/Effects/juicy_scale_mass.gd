@@ -1,6 +1,6 @@
 extends Juicy_effect
 class_name Juicy_effect_scale_mass
-# this will try to scale all child of the target_node
+## this will try to scale all child of the target_node
 
 @export var target_node : Node
 var all_child : Array[Node]

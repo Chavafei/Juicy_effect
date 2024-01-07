@@ -1,10 +1,11 @@
 extends Juicy_effect
 class_name Juicy_effect_screen_transition
-## this effect is for screen transition, texture and shader must be manually assigned,
-## because I have no idea how to autom  automaticallly assign it yet
 
+# A texture for animating transition, Black = start, White = end
 @export var transition_texture : Texture2D
-@export var transition_shader : Shader
+
+
+var transition_shader : Shader = preload("../shader/screen_transition_shader.gdshader")
 var texture_rect : TextureRect
 func Initialize():
 	pass

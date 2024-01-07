@@ -10,19 +10,23 @@ var playing : bool = false
 
 @export_group("Timing")
 
+## if this is true, the juicy effect after this effect will have to wait for this effect to finish first before continue.
 @export var stopper : bool 
-# if this is true, the juicy effect after this effect will have to wait for this effect to finish first before continue.
-# finishing is when stop_play() is called
 
+## the delay before playing this juicy effect
 @export var initial_delay : float = 0.0
-# the delay before playing this juicy effect
 
+## the duration of this play, Some effects will use this. 
 @export var duration : float = 1.0
-# the duration of this play, Some effects will use this. 
 
+## Make the effect loop
 @export var loop : bool
-@export var loop_infinite : bool # will loop infinitely
+## The amount of time it will loop
 @export var loop_amount : int
+## ignore `loop_amount` and loop infinitely instead
+@export var loop_infinite : bool 
+
+
 var curloop : int
 
 var curDuration : float
@@ -82,7 +86,7 @@ func stop_play(ignoreloop : bool = false):
 		
 	
 	
-##### Down here are function that will be override, Idk how to mark a function to not be overrideable
+
  # this will call right away when the scene start
 func Initialize():
 	pass
@@ -104,7 +108,8 @@ func Play_Process():
  # this will call when the effect stop playing
 func Play_Exit(): 
 	pass
- 
-##### Up here are function that will be override, Idk how to mark a function to not be overrideable
+
+
+
 
 

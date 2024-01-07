@@ -1,6 +1,7 @@
 extends Juicy_effect
 class_name Juicy_effect_set_active
 
+## set visibility of the node, additionally you can also set its process
 
 @export var target_node : Node
 @export var initial_state : set_active_action

@@ -2,6 +2,7 @@ extends Juicy_effect
 class_name Juicy_effect_shake
 
 @export var target_node : Node
+
 @onready var initial_pos  = target_node.position
 
 @export_category("Shake parameter")
@@ -14,17 +15,18 @@ class_name Juicy_effect_shake
 @export var fall_off: Curve; 
 ## Shake fall off curve. Only applies if constant == false.
 
-
-var timer: Timer = Timer.new();
 var constant: bool = false;
 
+## Making Node shake
+# The Script reference source : https://github.com/Rofle44-git/shaker-plugin-gd4/blob/master/addons/shaker/shaker.gd
 
-### The Script reference source : https://github.com/Rofle44-git/shaker-plugin-gd4/blob/master/addons/shaker/shaker.gd
+
 
 func Play_Enter():
-	self.add_child(timer);
-	timer.wait_time = duration;
-	timer.timeout.connect(stop_play)
+	pass
+	#self.add_child(timer);
+	#timer.wait_time = duration;
+	#timer.timeout.connect(stop_play)
 
 func Play_Physic_Process():
 	var curve_value = fall_off.sample(curDuration/duration)
@@ -42,8 +44,6 @@ func Play_Physic_Process():
 				);
 	
 
-		
-	
 	pass
 
 func Play_Exit():
