@@ -51,6 +51,8 @@ func setactive(set_action : set_active_action):
 			if target_node.visible == false : target_node.visible = true
 			pass
 	
+	
+	
 	if target_node.visible == true :
 		target_node.set_process(true)
 	

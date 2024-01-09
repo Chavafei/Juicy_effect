@@ -6,7 +6,6 @@ class_name Juicy_player
 signal juice_play()
 
 @export var autoplay : bool
-@export var play_on_visible : bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
