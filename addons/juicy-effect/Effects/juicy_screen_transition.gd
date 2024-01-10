@@ -6,7 +6,6 @@ class_name Juicy_effect_screen_transition
 var transition_shader : Shader = preload("../shader/screen_transition_shader.gdshader")
 var texture_rect : TextureRect
 func Initialize():
-	 
 	
 	texture_rect = TextureRect.new()
 	texture_rect.name = "TransitionRect"
