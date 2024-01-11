@@ -9,6 +9,8 @@ var playing : bool = false
 
 
 @export_group("Timing")
+## if this is true, the effect will be able to play when it is playing, recommended setting this false to avoid bug
+@export var can_play_overlap : bool
 
 ## if this is true, the juicy effect after this effect will have to wait for this effect to finish first before continue.
 @export var stopper : bool 
@@ -37,6 +39,8 @@ func _ready():
 
 func Play():
 	if !active : return
+	if !can_play_overlap :
+		if playing : return
 	curloop = 0
 	curDuration = 0.0; 
 	Pre_Enter()
