@@ -41,6 +41,8 @@ func Play():
 	if !active : return
 	if !can_play_overlap :
 		if playing : return
+	if playing :
+		stop_play(true)
 	curloop = 0
 	curDuration = 0.0; 
 	Pre_Enter()
