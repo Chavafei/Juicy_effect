@@ -1,4 +1,4 @@
-@icon("../icons/juicy_effect_icon.svg")
+@icon("res://addons/juicy-effect/icons/juicy_effect_icon.svg")
 extends Node
 class_name Juicy_effect
 signal on_play()
@@ -28,6 +28,9 @@ var playing : bool = false
 ## ignore `loop_amount` and loop infinitely instead
 @export var loop_infinite : bool 
 
+@export_group("Modify")
+## is currently not used. this is planned to use as a modifier to the effect for some variation
+@export var intensity : float = 1
 
 var curloop : int
 
@@ -80,6 +83,11 @@ func stop_play(ignoreloop : bool = false):
 	on_stop.emit()
 	curDuration = 0.0
 	Play_Exit()
+	
+	
+	if ignoreloop :
+		loop = false
+		curloop = 0
 	
 	curloop += 1
 	if loop :

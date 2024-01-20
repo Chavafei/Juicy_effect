@@ -1,4 +1,3 @@
-@tool
 extends Juicy_effect
 class_name Juicy_effect_scale
 

@@ -12,10 +12,11 @@ func _ready():
 	if autoplay:
 		Play()
 
-func Play():
+func Play(intensity : float = 1):
 	juice_play.emit()
 	for child in get_children():
 		if child is Juicy_effect:
+			child.intensity = intensity
 			var juicy : Juicy_effect = child
 			child.Play()
 			if child.stopper :
