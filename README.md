@@ -6,7 +6,8 @@ It is inspired FEEL unity asset by moremountain
 
 The workflow include adding a Juicy_player and Juicy_effect as child, in which the juicy player will play them.
 
-(The Documentation is currently work in progress, so there are a lot of missing infomation)
+
+> The Documentation is currently work in progress, so there are a lot of missing infomation
 
 
 ## Getting Started
