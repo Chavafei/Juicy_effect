@@ -6,6 +6,8 @@ It is inspired FEEL unity asset by moremountain
 
 The workflow include adding a Juicy_player and Juicy_effect as child, in which the juicy player will play them.
 
+(The Documentation is currently work in progress, so there are a lot of missing infomation)
+
 
 ## Getting Started
 the effect for making a box pulse as an example
@@ -19,6 +21,23 @@ the effect for making a box pulse as an example
 - Run the scene, you will see that the box will pulse once
 - to make it loop, set the `loop` in `Juicy_effect_scale` to `true` and set `Loop Infinite` to `true`
 - the box will now pulse repeatedly
+
+## Juicy Effect's feature
+
+### Active
+if this is false, Juicy effect will not play.
+
+### Duration
+how long the juicy effect will play, this value will be used in most calculation of the effect
+
+### Stopper
+if this is true, the juicy effect after will need to wait for this effect to finished first to play.
+
+### Loop
+the Juicy effect will play again after it is finished, (I'm not sure how this will work with `Stopper` yet)
+
+
+
 
 
 ## Here are guide on how to do specific things
