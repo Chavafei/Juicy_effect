@@ -6,6 +6,9 @@ It is inspired FEEL unity asset by moremountain
 
 The workflow include adding a Juicy_player and Juicy_effect as child, in which the juicy player will play them.
 
+> If you have cool idea you want or you have made a custom Juicy effect, feel free to do a Pull request, I would really appreciate it
+
+
 > This addon is made with 3D first in mind, although some effect do support both 2D and 3D, some effect may only works for 3D 
 
 > The Documentation is currently work in progress, so there are a lot of missing infomation
