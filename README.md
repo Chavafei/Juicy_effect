@@ -35,6 +35,9 @@ if this is false, Juicy effect will not play.
 ### Duration
 how long the juicy effect will play, this value will be used in most calculation of the effect
 
+### Intensity
+Is Currently unused,
+
 ### Stopper
 if this is true, the juicy effect after will need to wait for this effect to finished first to play.
 
