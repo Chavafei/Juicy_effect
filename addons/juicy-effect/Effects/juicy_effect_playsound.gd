@@ -18,6 +18,9 @@ var base_audio
 ## Choose the action you want to do
 @export var action : AudioAction
 
+@export_category("Effect")
+@export var pitch : float = 1.0
+
 @export_category("Random")
 ## choose if it will use random audiostreamplayer instead
 @export var random : bool
@@ -32,7 +35,7 @@ func Play_Enter():
 	if audioStream_player == null :
 		audioStream_player = AudioStreamPlayer.new()
 		add_child(audioStream_player)
-	
+	audioStream_player.pitch_scale = pitch
 	if random :
 		var rand_index = randi() % audioStream_rand.size()
 		audio_to_play = audioStream_rand[rand_index]

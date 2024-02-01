@@ -1,6 +1,8 @@
 extends Juicy_effect
 class_name Juicy_effect_screen_shake
 
+## This effect is soon to be deprecated.
+
 var target_node : Node
 
 var initial_pos 
@@ -12,7 +14,7 @@ var initial_pos
 @export var max_value: float = 0.5;
 ## Maximum value.
 
-@export var fall_off: Curve; 
+@export var fall_off: Curve;
 ## Shake fall off curve. Only applies if constant == false.
 
 var constant: bool = false;

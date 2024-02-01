@@ -3,7 +3,7 @@ class_name Juicy_effect_shake
 
 @export var target_node : Node
 
-@onready var initial_pos  = target_node.position
+var initial_pos 
 
 @export_category("Shake parameter")
 @export var min_value: float = -0.5;
@@ -23,6 +23,8 @@ var constant: bool = false;
 
 
 func Play_Enter():
+	initial_pos  = target_node.position
+	
 	pass
 	#self.add_child(timer);
 	#timer.wait_time = duration;
