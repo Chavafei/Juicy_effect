@@ -8,12 +8,16 @@ class_name Juicy_effect_playSound
 
 ## assign the Audio stream that the 
 @export var audioClip : AudioStream
+@export_range(-80,80) var volume : float = 0.0
+@export var audioBus : String = "Master"
 var base_audio
 
 ## when this is true, Audio will play at the same place even when the object is moved or destroyed
 @export var unparent_on_play : bool
 # good for AudioStreamPlayer2D/3D
 # also works to make the sound still play even if the object is deleted
+
+
 
 ## Choose the action you want to do
 @export var action : AudioAction
@@ -36,6 +40,8 @@ func Play_Enter():
 		audioStream_player = AudioStreamPlayer.new()
 		add_child(audioStream_player)
 	audioStream_player.pitch_scale = pitch
+	audioStream_player.bus = audioBus
+	audioStream_player.volume_db = volume
 	if random :
 		var rand_index = randi() % audioStream_rand.size()
 		audio_to_play = audioStream_rand[rand_index]
