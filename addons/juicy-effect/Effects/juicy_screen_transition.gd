@@ -7,16 +7,17 @@ var transition_shader : Shader = preload("../shader/screen_transition_shader.gds
 var texture_rect : TextureRect
 func Initialize():
 	
-	texture_rect = TextureRect.new()
-	texture_rect.name = "TransitionRect"
-	texture_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
-	texture_rect.material = ShaderMaterial.new()
-	texture_rect.material.shader = transition_shader
+	
 	
 	
 	pass
 
 func Play_Enter():
+	texture_rect = TextureRect.new()
+	texture_rect.name = "TransitionRect"
+	texture_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
+	texture_rect.material = ShaderMaterial.new()
+	texture_rect.material.shader = transition_shader
 	
 	var img = get_viewport().get_texture().get_image()
 	var texture = ImageTexture.create_from_image(img)
@@ -37,6 +38,6 @@ func Play_Process():
 	pass
  
 func Play_Exit():
-	remove_child(texture_rect)
+	texture_rect.queue_free()
 	pass
  

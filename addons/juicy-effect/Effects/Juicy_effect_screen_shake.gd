@@ -1,61 +1,45 @@
 extends Juicy_effect
 class_name Juicy_effect_screen_shake
 
-## This effect is soon to be deprecated.
-
-var target_node : Node
-
-var initial_pos 
-
-@export_category("Shake parameter")
-@export var min_value: float = -0.5;
-## Minimum value.
-
-@export var max_value: float = 0.5;
-## Maximum value.
-
-@export var fall_off: Curve;
-## Shake fall off curve. Only applies if constant == false.
-
-var constant: bool = false;
-
-## Making Node shake
-# The Script reference source : https://github.com/Rofle44-git/shaker-plugin-gd4/blob/master/addons/shaker/shaker.gd
-
-
+# A texture for animating transition, Black = start, White = end
+@export var shake_strength : float = 2.0
+@export var on_top : bool # will also affect UI
+var shake_shader : Shader = preload("../shader/screen_shake.gdshader")
+var texture_rect : ColorRect
+func Initialize():
+	
+	
+	
+	
+	pass
 
 func Play_Enter():
-	pass
-	target_node = get_viewport().get_camera_3d()
-	initial_pos = target_node.position
-	#self.add_child(timer);
-	#timer.wait_time = duration;
-	#timer.timeout.connect(stop_play)
+	
+	texture_rect = ColorRect.new()
+	texture_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	texture_rect.name = "shake_rect"
+	texture_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
+	texture_rect.material = ShaderMaterial.new()
+	texture_rect.material.shader = shake_shader
+	texture_rect.material.set_shader_parameter("ShakeStrength",shake_strength)
 
+	
+	add_child(texture_rect)
+
+	
+	#transistion_sprite.texture = texture
+	
+	pass
+ 
 func Play_Physic_Process():
-	var curve_value = fall_off.sample(curDuration/duration)
-	
-	if target_node is Node3D :
-		target_node.position =  initial_pos + Vector3(
-				randf_range(min_value, max_value) * curve_value,
-				randf_range(min_value, max_value) * curve_value,
-				randf_range(min_value, max_value) * curve_value
-				) * intensity;
-	else :
-		target_node.position =  initial_pos + Vector2(
-				randf_range(min_value, max_value) * curve_value,
-				randf_range(min_value, max_value) * curve_value,
-				) * intensity;
-	
-
 	pass
-
+	
+func Play_Process():
+	pass
+ 
 func Play_Exit():
-	target_node.position = initial_pos
-	pass
+	texture_rect.material.set_shader_parameter("ShakeStrength",0.0)
 
+	texture_rect.queue_free()
 
-
-
-
-
+ 

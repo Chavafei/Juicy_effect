@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://d151vu7icfr1p"]
+
+[ext_resource type="Texture2D" uid="uid://peg74ie54v8s" path="res://addons/juicy-effect/Juicy_bar/icon.svg" id="1_k3jei"]
+[ext_resource type="Script" path="res://addons/juicy-effect/Juicy_bar/Juicy_bar.gd" id="2_wc3i2"]
+
+[node name="JuicyBar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_wc3i2")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture_progress = ExtResource("1_k3jei")

@@ -51,9 +51,3 @@ func Play_Physic_Process():
 func Play_Exit():
 	target_node.position = initial_pos
 	pass
-
-
-
-
-
-

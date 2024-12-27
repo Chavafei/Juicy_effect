@@ -6,7 +6,7 @@ class_name Juicy_effect_scale
 ## The target scale when the curve value is 1
 @export var target_scale : Vector3 = Vector3(1,1,1) # a scale at curve one
 
-
+@export var mode : transformtype = transformtype.Additive
 
 
 @export var curve : Curve
@@ -35,27 +35,50 @@ func Play_Physic_Process():
 	if !target_node is Node3D :
 		tar_s  = Vector2(target_scale.x,target_scale.y)
 	
-
-	if !advance_target_scale :
-		var curve_value = curve.sample(curDuration/duration)
-		target_node.scale = initial_scale + (curve_value * (tar_s - initial_scale));
+	if mode == transformtype.Additive :
 	
-	if advance_target_scale:
+		if !advance_target_scale :
+			var curve_value = curve.sample(curDuration/duration)
+			target_node.scale = initial_scale + (curve_value * (tar_s - initial_scale));
 		
-		var curve_val_x = curve_x.sample(curDuration/duration)
-		var curve_val_y = curve_y.sample(curDuration/duration)
-		var curve_val_z = curve_z.sample(curDuration/duration)
+		if advance_target_scale:
+			
+			var curve_val_x = curve_x.sample(curDuration/duration)
+			var curve_val_y = curve_y.sample(curDuration/duration)
+			var curve_val_z = curve_z.sample(curDuration/duration)
+			
+			var target_scale_x = curve_val_x * (tar_s.x - initial_scale.x)
+			var target_scale_y = curve_val_y * (tar_s.y - initial_scale.y)
+			var target_scale_z = curve_val_z * (tar_s.z - initial_scale.z)
+			var v = Vector3(target_scale_x,target_scale_y,target_scale_z)
+			target_node.scale = initial_scale + v;
+			
+			
+			pass
 		
-		var target_scale_x = curve_val_x * (tar_s.x - initial_scale.x)
-		var target_scale_y = curve_val_y * (tar_s.y - initial_scale.y)
-		var target_scale_z = curve_val_z * (tar_s.z - initial_scale.z)
-		var v = Vector3(target_scale_x,target_scale_y,target_scale_z)
-		target_node.scale = initial_scale + v;
+	elif mode == transformtype.Absolute :
+		if !advance_target_scale :
+			var curve_value = curve.sample(curDuration/duration)
+			#target_node.scale = initial_scale + (curve_value * (tar_s - initial_scale));
+			target_node.scale = lerp(target_node.scale,tar_s,curve_value)
 		
-		
-		pass
-		
-	
+		if advance_target_scale:
+			
+			var curve_val_x = curve_x.sample(curDuration/duration)
+			var curve_val_y = curve_y.sample(curDuration/duration)
+			var curve_val_z = curve_z.sample(curDuration/duration)
+			
+			var target_scale_x = curve_val_x * (tar_s.x - initial_scale.x)
+			var target_scale_y = curve_val_y * (tar_s.y - initial_scale.y)
+			var target_scale_z = curve_val_z * (tar_s.z - initial_scale.z)
+			var v = Vector3(target_scale_x,target_scale_y,target_scale_z)
+			#target_node.scale = initial_scale + v;
+			target_node.scale.x = lerp(target_node.scale.x,tar_s.x,curve_val_x)
+			target_node.scale.y = lerp(target_node.scale.y,tar_s.y,curve_val_y)
+			target_node.scale.z = lerp(target_node.scale.z,tar_s.z,curve_val_z)
+			
+			
+			pass
 	
 	pass
 	
@@ -70,9 +93,8 @@ func Play_Exit():
 
 #idk how to use this yet
 enum transformtype {
-	Normal,
+	Absolute,
 	Additive
 	
 	
 }
-

@@ -7,10 +7,6 @@ class_name  Juicy_effect_screen_flash
 var color_rect : ColorRect
 func Initialize():
 	
-	color_rect = ColorRect.new()
-	color_rect.name = "FlashRect"
-	color_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
-	
 	
 	pass
  # this will call right away regardless of delay
@@ -19,9 +15,14 @@ func Pre_Enter():
 
 # this will call when the effect start playing
 func Play_Enter(): 
+	
+	color_rect = ColorRect.new()
+	color_rect.name = "FlashRect"
+	color_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
+	color_rect.z_index = 10
 	color_rect.color = startColor
 	add_child(color_rect)
-	
+
 	pass
  
 func Play_Physic_Process():
@@ -34,5 +35,6 @@ func Play_Process():
 	
  # this will call when the effect stop playing
 func Play_Exit(): 
-	remove_child(color_rect)
+	#remove_child(color_rect)
+	color_rect.queue_free()
 	pass

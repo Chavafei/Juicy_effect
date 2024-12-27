@@ -1,4 +1,5 @@
 extends Control
+class_name juicy_list_container
 ## I called this "Container" but this is actually useable in all Control node
 
 @export var list_delay : float

@@ -3,8 +3,10 @@ extends Juicy_effect
 class_name Juicy_effect_playSound
 
 ## assign the AudioStreamer that the effect will play
-## if no assigned, It will create its own AudioStreamPlayer
-@export var audioStream_player : AudioStreamPlayer
+## if none assigned, It will create its own AudioStreamPlayer
+@export_node_path("AudioStreamPlayer", "AudioStreamPlayer3D", "AudioStreamPlayer2D") var audio_steam_player_path 
+
+var audioStream_player
 
 ## assign the Audio stream that the 
 @export var audioClip : AudioStream
@@ -28,10 +30,19 @@ var base_audio
 @export_category("Random")
 ## choose if it will use random audiostreamplayer instead
 @export var random : bool
-
 ## This will choose random Audio streamer assigned, 
 @export var audioStream_rand : Array[AudioStreamPlayer]
 # will probably add random audio clip later
+
+@export_category("Random pitch")
+@export var random_pitch : bool
+@export var pitch_scale_max : float = 1.2
+@export var pitch_scale_min : float = 0.8
+var initial_pitch : float
+
+func _ready():
+	if audio_steam_player_path != null :
+		audioStream_player = get_node(audio_steam_player_path)
 
 func Play_Enter():
 	var audio_to_play
@@ -68,6 +79,11 @@ func Play_Enter():
 	if audioClip != null:
 		audio_to_play.stream = audioClip
 	
+	
+	if random_pitch :
+		var pitch_scale = randf_range(pitch_scale_min,pitch_scale_max)
+		
+		audio_to_play.pitch_scale = pitch_scale
 	
 	match action :
 		AudioAction.Play :

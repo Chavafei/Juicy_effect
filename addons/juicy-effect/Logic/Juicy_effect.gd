@@ -20,7 +20,8 @@ var playing : bool = false
 
 ## the duration of this play, Some effects will use this. 
 @export var duration : float = 1.0
-
+@export var duration_forever : bool = false #the effect will play infinitely until it is called Stop()
+@onready var initial_duration = duration # this is in case that the duration got change later, you will still be able to get the initial duration
 ## Make the effect loop
 @export var loop : bool
 ## The amount of time it will loop
@@ -36,9 +37,30 @@ var curloop : int
 
 var curDuration : float
 
+@export_category("Debug")
+## pretend these are button on inspector, idk how to make button on inspector
+var debug_delayed : bool
+@export var debug_play_button: bool:
+	set(value):
+		debug_button()
+		pass
+#@export var juice_button_debug_play:String
+func _on_button_pressed():
+	print("Debug Pressed")
+
+
+func debug_button() :
+	if !debug_delayed : 
+		debug_delayed = true
+		return
+	Play()
+
 
 func _ready():
+	if !active : return
 	Initialize();
+
+var delay_timer
 
 func Play():
 	if !active : return
@@ -50,7 +72,8 @@ func Play():
 	curDuration = 0.0; 
 	Pre_Enter()
 	if initial_delay > 0.0 :
-		await get_tree().create_timer(initial_delay).timeout
+		delay_timer = get_tree().create_timer(initial_delay)
+		await delay_timer.timeout
 	
 	on_play.emit()
 	Play_Enter()
@@ -65,9 +88,10 @@ func _physics_process(delta):
 
 	if playing :
 		Play_Physic_Process()
-		curDuration += delta
-		if(curDuration >= duration):
-			stop_play()
+		if !duration_forever :
+			curDuration += delta
+			if(curDuration >= duration):
+				stop_play()
 
 func _process(delta):
 	if playing :
@@ -78,7 +102,9 @@ func _process(delta):
 
 #this is called when you want to end the play
 func stop_play(ignoreloop : bool = false):
-
+	if playing == false : return
+	if delay_timer != null :
+		delay_timer.timeout.emit()
 	
 	on_stop.emit()
 	curDuration = 0.0
@@ -86,11 +112,11 @@ func stop_play(ignoreloop : bool = false):
 	
 	
 	if ignoreloop :
-		loop = false
+		#loop = false
 		curloop = 0
 	
 	curloop += 1
-	if loop :
+	if loop and !ignoreloop :
 		if loop_amount > curloop or loop_infinite:
 			
 	
@@ -123,8 +149,3 @@ func Play_Process():
  # this will call when the effect stop playing
 func Play_Exit(): 
 	pass
-
-
-
-
-
