@@ -48,8 +48,6 @@ the Juicy effect will play again after it is finished, (I'm not sure how this wi
 
 
 
-
-## Here are guide on how to do specific things
 ### Start the Juicy_player in code
 You can do it by accessing the `Juicy_player` node then call `Play()`
 for example
@@ -63,4 +61,36 @@ func _ready():
 	juicy.Play()
 
 ```
+
+## Create your own juicy effect 
+
+make a script that extend from Juicy_effect,
+Here is the general template
+```
+extends Juicy_effect
+class_name your_new_effect
+
+ # this will call right away when the scene start
+func Initialize():
+	pass
+	
+ # this will call right away regardless of delay
+func Pre_Enter():
+	pass
+
+# this will call when the effect start playing
+func Play_Enter(): 
+	pass
+ 
+func Play_Physic_Process():
+	pass
+	
+func Play_Process():
+	pass
+	
+ # this will call when the effect stop playing
+func Play_Exit(): 
+	pass
+```
+
 
