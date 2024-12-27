@@ -40,7 +40,7 @@ how long the juicy effect will play, this value will be used in most calculation
 Is Currently unused,
 
 ### Stopper
-if this is true, the juicy effect after will need to wait for this effect to finished first to play.
+if this is true, the juicy effect after will need to wait for this effect to finished first to play the next juicy effect
 
 ### Loop
 the Juicy effect will play again after it is finished, (I'm not sure how this will work with `Stopper` yet)
